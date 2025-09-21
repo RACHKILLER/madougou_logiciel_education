@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme Physique-Chimie - Contenu Protégé</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --teacher: #9b59b6;
+            --student: #1abc9c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="0" y="50" font-size="12" fill="rgba(200,200,200,0.1)" transform="rotate(-45 10,50)">PROTEGÉ</text></svg>');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .user-type {
+            background-color: var(--teacher);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+        
+        .user-type.student {
+            background-color: var(--student);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 0 5px;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+        }
+        
+        .btn-teacher {
+            background: var(--teacher);
+        }
+        
+        .btn-teacher:hover {
+            background: #8e44ad;
+        }
+        
+        .btn-student {
+            background: var(--student);
+        }
+        
+        .btn-student:hover {
+            background: #16a085;
+        }
+        
+        /* Dashboard */
+        .dashboard {
+            padding: 2rem 0;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .dashboard-title {
+            color: var(--secondary);
+        }
+        
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-content ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .card-content li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-content li:last-child {
+            border-bottom: none;
+        }
+        
+        .card-content a {
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .card-content a:hover {
+            color: var(--primary);
+        }
+        
+        .badge {
+            background: var(--success);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* Protected Content */
+        .protected-content {
+            position: relative;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+        }
+        
+        .protected-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 5;
+            cursor: not-allowed;
+        }
+        
+        .protected-view {
+            filter: blur(2px);
+            transition: filter 0.3s;
+            pointer-events: none;
+        }
+        
+        .protected-view.active {
+            filter: blur(0);
+            pointer-events: auto;
+        }
+        
+        .view-control {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .watermark {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 3rem;
+            color: red;
+            transform: rotate(-45deg);
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        /* Resources Section */
+        .resources {
+            background: var(--light);
+            padding: 4rem 0;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .resource-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Upload Section */
+        .upload {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--primary);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .upload-area:hover {
+            background: rgba(52, 152, 219, 0.1);
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Video Section */
+        .videos {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .video-card {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .video-thumbnail {
+            height: 180px;
+            background-color: #ddd;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .video-thumbnail::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-thumbnail i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            z-index: 1;
+        }
+        
+        .video-content {
+            padding: 1.5rem;
+        }
+        
+        .video-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Exercises Section */
+        .exercises {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+        
+        .exercise-list {
+            margin-top: 2rem;
+        }
+        
+        .exercise-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .exercise-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .close-modal {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-icons {
+            margin: 1rem 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .dashboard-actions {
+                margin-top: 1rem;
+            }
+        }
+        
+        /* Protection message */
+        .protection-message {
+            text-align: center;
+            padding: 10px;
+            background: #ffebee;
+            color: #c62828;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-atom"></i>
+                    Physique-Chimie Protégé
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#dashboard">Tableau de bord</a></li>
+                        <li><a href="#resources">Ressources</a></li>
+                        <li><a href="#videos">Vidéos</a></li>
+                        <li><a href="#exercises">Exercices</a></li>
+                        <li><a href="#upload">Déposer</a></li>
+                        <span class="user-type teacher" id="userType">Enseignant</span>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Plateforme Protégée de Physique-Chimie</h1>
+                <p>Contenu sécurisé contre la copie et la capture - Réservé aux élèves et enseignants</p>
+                <div>
+                    <button class="btn btn-teacher" id="teacherMode">Mode Enseignant</button>
+                    <button class="btn btn-student" id="studentMode">Mode Élève</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protection Message -->
+    <div class="container">
+        <div class="protection-message">
+            <i class="fas fa-shield-alt"></i> Ce contenu est protégé contre la copie et la capture d'écran
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2 class="dashboard-title">Tableau de bord</h2>
+                <div class="dashboard-actions">
+                    <button class="btn btn-teacher" id="addContentBtn">Ajouter du contenu</button>
+                </div>
+            </div>
+            
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Première C & D</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Cours et exercices pour les classes de première</p>
+                        <ul>
+                            <li>
+                                <a href="#" class="view-document" data-document="mecanique">
+                                    <span>Mécanique</span>
+                                    <span class="badge">3 PDF</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="view-document" data-document="electricite">
+                                    <span>Électricité</span>
+                                    <span class="badge">5 PDF</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="view-document" data-document="optique">
+                                    <span>Optique</span>
+                                    <span class="badge">2 PDF</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Terminale C & D</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Cours et exercices pour les classes de terminale</p>
+                        <ul>
+                            <li>
+                                <a href="#" class="view-document" data-document="mecanique-avancee">
+                                    <span>Mécanique avancée</span>
+                                    <span class="badge">6 PDF</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="view-document" data-document="electromagnetisme">
+                                    <span>Électromagnétisme</span>
+                                    <span class="badge">4 PDF</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="view-document" data-document="thermodynamique">
+                                    <span>Thermodynamique</span>
+                                    <span class="badge">3 PDF</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Exercices récents</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Exercices déposés par les élèves</p>
+                        <ul>
+                            <li>
+                                <a href="#" class="view-document" data-document="exercice-mecanique">
+                                    <span>Exercice Mécanique - Jean Dupont</span>
+                                    <span class="badge">À corriger</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="view-document" data-document="devoir-electricite">
+                                    <span>Devoir Électricité - Marie Martin</span>
+                                    <span class="badge">Corrigé</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="view-document" data-document="probleme-optique">
+                                    <span>Problème Optique - Pierre Leroy</span>
+                                    <span class="badge">En attente</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protected Document View -->
+    <section class="protected-document" id="protectedDocument" style="display: none;">
+        <div class="container">
+            <h2 class="section-title" id="documentTitle">Document Protégé</h2>
+            
+            <div class="protected-content">
+                <div class="watermark">CONFIDENTIEL</div>
+                <div class="protected-view" id="documentView">
+                    <div id="documentContent">
+                        <!-- Content will be loaded here -->
+                    </div>
+                </div>
+                <div class="protected-overlay" id="documentOverlay"></div>
+                
+                <div class="view-control">
+                    <button class="btn" id="viewDocumentBtn">
+                        <i class="fas fa-eye"></i> Afficher le document
+                    </button>
+                    <p class="small">Le document sera flouté après 30 secondes</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-teacher" id="closeDocumentBtn">
+                    <i class="fas fa-arrow-left"></i> Retour aux cours
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources" id="resources">
+        <div class="container">
+            <h2 class="section-title">Ressources pédagogiques</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Cours PDF</h3>
+                    <p>Des cours complets et structurés en format PDF à consulter.</p>
+                    <button class="btn view-document" style="margin-top: 15px;" data-document="cours-pdf">Consulter</button>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Images & Schémas</h3>
+                    <p>Des illustrations et schémas explicites pour mieux comprendre.</p>
+                    <button class="btn view-document" style="margin-top: 15px;" data-document="schemas">Voir les schémas</button>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Exercices</h3>
+                    <p>Des exercices corrigés pour s'entraîner et progresser.</p>
+                    <button class="btn view-document" style="margin-top: 15px;" data-document="exercices">Faire des exercices</button>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Vidéos</h3>
+                    <p>Des explications en vidéo pour les concepts difficiles.</p>
+                    <button class="btn" style="margin-top: 15px;" id="viewVideos">Regarder</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="videos" id="videos">
+        <div class="container">
+            <h2 class="section-title">Vidéos explicatives</h2>
+            <p>Regardez des vidéos pour mieux comprendre les concepts complexes</p>
+            
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-content">
+                        <h3>Les lois de Newton</h3>
+                        <p>Explication détaillée des trois lois de Newton avec exemples concrets</p>
+                        <p class="video-duration">Durée: 15:32</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1581094288338-231b058b38b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-content">
+                        <h3>Les circuits électriques</h3>
+                        <p>Comprendre les circuits en série et en parallèle</p>
+                        <p class="video-duration">Durée: 12:45</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-content">
+                        <h3>La réaction chimique</h3>
+                        <p>Équilibrage des équations chimiques</p>
+                        <p class="video-duration">Durée: 18:20</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exercises Section -->
+    <section class="exercises" id="exercises">
+        <div class="container">
+            <h2 class="section-title">Exercices et devoirs</h2>
+            
+            <div class="exercise-list">
+                <div class="exercise-item">
+                    <div class="exercise-header">
+                        <h3>Devoir de Mécanique - Applications des lois de Newton</h3>
+                        <div class="exercise-actions">
+                            <button class="btn view-document" data-document="devoir-mecanique">Consulter</button>
+                            <button class="btn btn-teacher">Corriger</button>
+                        </div>
+                    </div>
+                    <p>Date limite: 15 juin 2023</p>
+                    <p>5 exercices à résoudre sur les applications des lois de Newton</p>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="exercise-header">
+                        <h3>Problèmes d'électricité - Circuits complexes</h3>
+                        <div class="exercise-actions">
+                            <button class="btn view-document" data-document="problemes-electricite">Consulter</button>
+                            <button class="btn btn-teacher">Corriger</button>
+                        </div>
+                    </div>
+                    <p>Date limite: 22 juin 2023</p>
+                    <p>3 problèmes à résoudre sur l'analyse des circuits complexes</p>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="exercise-header">
+                        <h3>Exercices de chimie - Réactions d'oxydoréduction</h3>
+                        <div class="exercise-actions">
+                            <button class="btn view-document" data-document="exercices-chimie">Consulter</button>
+                            <button class="btn btn-student" id="submitExercise">Déposer</button>
+                        </div>
+                    </div>
+                    <p>Date limite: 30 juin 2023</p>
+                    <p>Série d'exercices sur les réactions d'oxydoréduction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload" id="upload">
+        <div class="container">
+            <h2 class="section-title">Déposer des ressources</h2>
+            <p>Espace réservé aux enseignants pour ajouter du contenu pédagogique</p>
+            
+            <div class="upload-area">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Glissez-déposez vos fichiers ici</h3>
+                <p>ou</p>
+                <button class="btn">Parcourir les fichiers</button>
+                <p class="small">Formats acceptés: PDF, JPG, PNG, MP4 (max. 20MB)</p>
+            </div>
+            
+            <div class="recent-uploads">
+                <h3>Dépôts récents</h3>
+                <ul>
+                    <li>Cours_Mecanique_1ere.pdf - 12 juin 2023</li>
+                    <li>Exercices_Electricite_Terminale.pdf - 10 juin 2023</li>
+                    <li>Video_Optique.mp4 - 5 juin 2023</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Physique-Chimie Protégé</h3>
+                <p>Plateforme de soutien sécurisée pour les élèves de 1ère et Terminale</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>Contact: contact@physique-chimie.edu | Tel: +225 XX XX XX XX</p>
+                <p>&copy; 2023 Tous droits réservés - Contenu protégé</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for content addition -->
+    <div class="modal" id="addContentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ajouter du contenu</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="contentForm">
+                <div class="form-group">
+                    <label for="contentType">Type de contenu:</label>
+                    <select id="contentType" required>
+                        <option value="">Sélectionnez...</option>
+                        <option value="cours">Cours PDF</option>
+                        <option value="exercice">Exercice</option>
+                        <option value="video">Vidéo</option>
+                        <option value="image">Image/Schéma</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="contentTitle">Titre:</label>
+                    <input type="text" id="contentTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="contentDescription">Description:</label>
+                    <textarea id="contentDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contentFile">Fichier:</label>
+                    <input type="file" id="contentFile" required>
+                </div>
+                <div class="form-group">
+                    <label for="contentLevel">Niveau:</label>
+                    <select id="contentLevel">
+                        <option value="1ere">Première C/D</option>
+                        <option value="terminal">Terminale C/D</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-teacher">Ajouter le contenu</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Script pour gérer les fonctionnalités de la plateforme
+        document.addEventListener('DOMContentLoaded', function() {
+            const userTypeElement = document.getElementById('userType');
+            const teacherModeBtn = document.getElementById('teacherMode');
+            const studentModeBtn = document.getElementById('studentMode');
+            const addContentBtn = document.getElementById('addContentBtn');
+            const addContentModal = document.getElementById('addContentModal');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const contentForm = document.getElementById('contentForm');
+            const submitExerciseBtn = document.getElementById('submitExercise');
+            const viewDocumentBtn = document.getElementById('viewDocumentBtn');
+            const closeDocumentBtn = document.getElementById('closeDocumentBtn');
+            const documentOverlay = document.getElementById('documentOverlay');
+            const documentView = document.getElementById('documentView');
+            const protectedDocumentSection = document.getElementById('protectedDocument');
+            const documentTitle = document.getElementById('documentTitle');
+            const documentContent = document.getElementById('documentContent');
+            
+            // Basculer entre mode enseignant et élève
+            teacherModeBtn.addEventListener('click', function() {
+                userTypeElement.textContent = 'Enseignant';
+                userTypeElement.className = 'user-type teacher';
+                addContentBtn.style.display = 'block';
+                updateUIForTeacher();
+            });
+            
+            studentModeBtn.addEventListener('click', function() {
+                userTypeElement.textContent = 'Élève';
+                userTypeElement.className = 'user-type student';
+                addContentBtn.style.display = 'none';
+                updateUIForStudent();
+            });
+            
+            // Gérer la modal d'ajout de contenu
+            addContentBtn.addEventListener('click', function() {
+                addContentModal.style.display = 'flex';
+            });
+            
+            closeModalBtn.addEventListener('click', function() {
+                addContentModal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === addContentModal) {
+                    addContentModal.style.display = 'none';
+                }
+            });
+            
+            contentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Contenu ajouté avec succès!');
+                addContentModal.style.display = 'none';
+                contentForm.reset();
+            });
+            
+            // Gérer le dépôt d'exercice par l'élève
+            submitExerciseBtn.addEventListener('click', function() {
+                alert('Exercice déposé avec succès! Le professeur le corrigera bientôt.');
+            });
+            
+            // Gérer l'affichage des documents protégés
+            document.querySelectorAll('.view-document').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const docType = this.getAttribute('data-document');
+                    showProtectedDocument(docType);
+                });
+            });
+            
+            // Afficher le document
+            viewDocumentBtn.addEventListener('click', function() {
+                documentView.classList.add('active');
+                documentOverlay.style.display = 'none';
+                
+                // Masquer automatiquement après 30 secondes
+                setTimeout(() => {
+                    documentView.classList.remove('active');
+                    documentOverlay.style.display = 'block';
+                }, 30000);
+            });
+            
+            // Fermer le document
+            closeDocumentBtn.addEventListener('click', function() {
+                protectedDocumentSection.style.display = 'none';
+                document.querySelector('.dashboard').style.display = 'block';
+                document.querySelector('.resources').style.display = 'block';
+                document.querySelector('.videos').style.display = 'block';
+                document.querySelector('.exercises').style.display = 'block';
+                document.querySelector('.upload').style.display = 'block';
+            });
+            
+            // Empêcher le clic droit
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                alert('Cette fonctionnalité est désactivée pour protéger le contenu.');
+            });
+            
+            // Empêcher les captures d'écran avec la touche Impr écran
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'PrintScreen') {
+                    e.preventDefault();
+                    alert('Les captures d'écran sont désactivées pour protéger le contenu.');
+                }
+            });
+            
+            // Afficher un document protégé
+            function showProtectedDocument(docType) {
+                protectedDocumentSection.style.display = 'block';
+                document.querySelector('.dashboard').style.display = 'none';
+                document.querySelector('.resources').style.display = 'none';
+                document.querySelector('.videos').style.display = 'none';
+                document.querySelector('.exercises').style.display = 'none';
+                document.querySelector('.upload').style.display = 'none';
+                
+                // Réinitialiser l'affichage du document
+                documentView.classList.remove('active');
+                documentOverlay.style.display = 'block';
+                
+                // Charger le contenu en fonction du type de document
+                let title = '';
+                let content = '';
+                
+                switch(docType) {
+                    case 'mecanique':
+                        title = 'Mécanique - Première';
+                        content = `<h3>Introduction à la mécanique</h3>
+                                  <p>La mécanique est la branche de la physique qui étudie le mouvement des corps et les forces qui provoquent ce mouvement.</p>
+                                  <h4>Les lois de Newton</h4>
+                                  <p>1. Première loi de Newton : Principe d'inertie</p>
+                                  <p>2. Deuxième loi de Newton : Relation fondamentale de la dynamique</p>
+                                  <p>3. Troisième loi de Newton : Principe des actions réciproques</p>
+                                  <div class="formula">F = m × a</div>`;
+                        break;
+                    case 'electricite':
+                        title = 'Électricité - Première';
+                        content = `<h3>Les circuits électriques</h3>
+                                  <p>Un circuit électrique est un ensemble de composants électriques reliés par des conducteurs.</p>
+                                  <h4>Loi d'Ohm</h4>
+                                  <p>La tension U aux bornes d'une résistance est proportionnelle à l'intensité I du courant qui la traverse.</p>
+                                  <div class="formula">U = R × I</div>`;
+                        break;
+                    default:
+                        title = 'Document de cours';
+                        content = `<h3>Contenu protégé</h3>
+                                  <p>Ce document est réservé à l'usage exclusif des élèves et enseignants.</p>
+                                  <p>Toute reproduction ou capture est strictement interdite.</p>`;
+                }
+                
+                documentTitle.textContent = title;
+                documentContent.innerHTML = content;
+            }
+            
+            // Mettre à jour l'interface pour le mode enseignant
+            function updateUIForTeacher() {
+                const exerciseActions = document.querySelectorAll('.exercise-actions');
+                exerciseActions.forEach(action => {
+                    action.innerHTML = '<button class="btn view-document" data-document="devoir">Consulter</button><button class="btn btn-teacher">Corriger</button>';
+                });
+                
+                // Réattacher les événements
+                document.querySelectorAll('.view-document').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const docType = this.getAttribute('data-document');
+                        showProtectedDocument(docType);
+                    });
+                });
+            }
+            
+            // Mettre à jour l'interface pour le mode élève
+            function updateUIForStudent() {
+                const exerciseActions = document.querySelectorAll('.exercise-actions');
+                exerciseActions.forEach(action => {
+                    action.innerHTML = '<button class="btn view-document" data-document="devoir">Consulter</button><button class="btn btn-student">Déposer</button>';
+                });
+                
+                // Réattacher les événements
+                document.querySelectorAll('.view-document').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const docType = this.getAttribute('data-document');
+                        showProtectedDocument(docType);
+                    });
+                });
+            }
+            
+            // Initialisation
+            updateUIForTeacher();
+        });
+    </script>
+</body>
+</html>
